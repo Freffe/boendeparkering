@@ -9,13 +9,21 @@ import Position from '../../components/user-position/position-component';
 const HomePage = () => {
     return  (
         <HomePageContainer>
+        {navigator.onLine ?
             <ErrorBoundary>
             <MapContainer styles={{position: "relative"}} />
                 <div style={{ position: "absolute", marginLeft: "40px"}}>
                     <FetchAdress />
                     <Position />
                 </div>
-            </ErrorBoundary>    
+            </ErrorBoundary>  
+            : 
+            (<div>
+                <p>
+                    <h4>Missing an active internet connection. Please enable Wi-fi to use this feature.</h4>
+                </p>
+            </div>)
+        }  
         </HomePageContainer>
     );
 };
