@@ -73,3 +73,24 @@ export const StyledMessageField = styled.div`
     }
   }
 `;
+
+export const StyledMessageErrorField = styled.div`
+    border: 2px solid black;
+    border-radius: 2px;
+    position: absolute;
+    background: #646464;
+    font-family: arial;
+    font-style: italic;
+    font-size: 14px;
+    color: red;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    animation: FadeAnimation 1s ease-in 1.8s forwards;
+    @keyframes FadeAnimation {
+    0% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+`;

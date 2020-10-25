@@ -12,7 +12,8 @@ const mapdataReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 mapData: action.payload,
-                isEmpty: false
+                isEmpty: false,
+                error: null
             }
         case DataActionTypes.FETCH_MAP_DATA_FAILURE:
             return {
@@ -22,7 +23,8 @@ const mapdataReducer = (state = INITIAL_STATE, action) => {
         case DataActionTypes.FETCH_MAP_DATA_EMPTY:
             return {
                 ...state,
-                isEmpty: !state.isEmpty
+                isEmpty: !state.isEmpty,
+                error: null
             }
         default:
             return state;

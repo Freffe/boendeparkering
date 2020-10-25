@@ -4,10 +4,10 @@ import { selectUserData } from '../../redux/data/user/userdata.selectors';
 import { mapDataFetchStart } from '../../redux/data/mapdata.actions';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import { SearchAdressContainer, StyledGoButton, StyledSearchButton, StyledMessageField } from './fetchAdress.styles';
+import { SearchAdressContainer, StyledGoButton, StyledSearchButton, StyledMessageField, StyledMessageErrorField } from './fetchAdress.styles';
 import { capitalizeThis } from '../../helpers/mapHelpers';
 
-const FetchAdress = ({ mapDataFetchStart, isEmpty, userPositionData: {isUserPosition} }) =>{
+const FetchAdress = ({ mapDataFetchStart, isEmpty, userPositionData: {isUserPosition}, error }) =>{
     const [searchAdress, setUserStreet] = useState('');
     const [lastSearchSubmitted, setlastSearchSubmitted] = useState('');
     const handleSubmit = async event => {
@@ -63,6 +63,11 @@ const FetchAdress = ({ mapDataFetchStart, isEmpty, userPositionData: {isUserPosi
                     Fann inte adressen du sökte
                 </StyledMessageField>
             }
+            {error && 
+                <StyledMessageErrorField>
+                    För stunden är det krångel hos databasen, ursäkta röran!
+                </StyledMessageErrorField>
+            }
         </SearchAdressContainer>                                                                   
 
 
@@ -77,7 +82,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state) => ({
     userPositionData: selectUserData(state),
-    isEmpty: state.mapData.isEmpty
+    isEmpty: state.mapData.isEmpty,
+    error: state.mapData.error
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FetchAdress);
